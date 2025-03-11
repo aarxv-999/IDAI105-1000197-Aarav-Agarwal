@@ -15,7 +15,18 @@ from mlxtend.frequent_patterns import apriori, association_rules
 import re
 from wordcloud import WordCloud
 from collections import Counter
+import subprocess
+import sys
 
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+required_packages = ["matplotlib", "seaborn", "scikit-learn", "mlxtend", "wordcloud"]
+for package in required_packages:
+    try:
+        __import__(package)
+    except ImportError:
+        install(package)
 
 # data loading & preprocessing
 
